@@ -18,6 +18,7 @@ struct Point P0;
 struct Point P1;
 struct Point P2;
 struct Point P3;
+struct Point Pant;
 struct Point P;
 
 struct Point a;
@@ -85,6 +86,9 @@ void init()
     P3.x = 2.0;
     P3.y = 2.0;
     P3.z = 0.0;
+    Pant.x = 0.0;
+    Pant.y = 0.0;
+    Pant.z = 0.0;
 }
 
 void trocadepontos(float p0x, float p0y, float p1x, float p1y, float p2x, float p2y, float p3x, float p3y)
@@ -97,6 +101,24 @@ void trocadepontos(float p0x, float p0y, float p1x, float p1y, float p2x, float 
     P2.y = p2y;
     P3.x = p3x;
     P3.y = p3y;
+}
+
+void face(float p1x, float p1y, float p1z, float p2x, float p2y, float p2z, float p3x, float p3y, float p3z, float p4x, float p4y, float p4z){
+    glBegin(GL_POLYGON);
+        glVertex3f(p1x, p1y, p1z);
+        glVertex3f(p2x, p2y, p2z);
+        glVertex3f(p3x, p3y, p3z);
+        glVertex3f(p4x, p4y, p4z);
+    glEnd();
+}
+
+void barra(struct Point P, struct Point Pant){
+    face(P.x, P.y+0.2, P.z-0.2, P.x, P.y+0.2, P.z+0.2, P.x, P.y-0.2, P.z+0.2, P.x, P.y-0.2, P.z-0.2);
+    face(Pant.x, Pant.y+0.2, Pant.z-0.2, Pant.x, Pant.y+0.2, Pant.z+0.2, P.x, P.y+0.2, P.z+0.2, P.x, P.y+0.2, P.z-0.2);
+    glNormal3f(0.0, 1.0, 0.0);
+    face(Pant.x, Pant.y+0.2, Pant.z-0.2, Pant.x, Pant.y-0.2, Pant.z-0.2, P.x, P.y-0.2, P.z-0.2, P.x, P.y+0.2, P.z-0.2);
+    face(Pant.x, Pant.y-0.2, Pant.z-0.2, Pant.x, Pant.y-0.2, Pant.z+0.2, P.x, P.y-0.2, P.z+0.2, P.x, P.y-0.2, P.z-0.2);
+    face(Pant.x, Pant.y-0.2, Pant.z+0.2, Pant.x, Pant.y+0.2, Pant.z+0.2, P.x, P.y+0.2, P.z+0.2, P.x, P.y-0.2, P.z+0.2);
 }
 
 void pista()
@@ -117,7 +139,6 @@ void pista()
     glMaterialfv(GL_FRONT, GL_AMBIENT_AND_DIFFUSE, diffuse);
     glMaterialfv(GL_FRONT, GL_SPECULAR, specular);
     glMaterialf(GL_FRONT, GL_SHININESS, shininess);
-    glBegin(GL_QUAD_STRIP);
     t = 0.0;
     for (int i = 0; i < n; i++)
     {
@@ -140,10 +161,11 @@ void pista()
         P.x = (1.0 - t) * d.x + t * e.x;
         P.y = (1.0 - t) * d.y + t * e.y;
         P.z = (1.0 - t) * d.z + t * e.z;
-        glVertex3f(P.x-0.2, P.y+0.2, P.z - 0.2);
-        glVertex3f(P.x+0.2, P.y+0.2, P.z + 0.2);
-        glVertex3f(P.x+0.2, P.y-0.2, P.z - 0.2);
-        glVertex3f(P.x-0.2, P.y-0.2, P.z + 0.2);
+        if(t == 0){
+            Pant = P;
+        }
+        barra(P, Pant);
+        Pant = P;
         t += tstep;
     }
     glEnd();
@@ -180,13 +202,13 @@ void keyboard(unsigned char key, int x, int y)
         angleZ += 5.0f;
         break;
     case '1':
-        trocadepontos(-2.0, -2.0, 2.0,-2.0, 2.0, 2.0, 2.0, 2.0);
+        trocadepontos(-2.0, -2.0, 2.0,-2.0, 2.0, 2.0, 3.0, 2.0);
         break;
     case '2':
-        trocadepontos(3.0, -1.0, 0.0, 0.0, 3.0, 2.0, 1.0, 1.0);
+        trocadepontos(-3.0, -1.0, 0.0, 0.0, 3.0, 2.0, 3.0, 1.0);
         break;
     case '3':
-        trocadepontos(1.0, 1.0, 3.0, 1.0, 2.0, -22.0, -1.0, -2.0);
+        trocadepontos(-3.0, 1.0, 3.0, 1.0, 2.0, -2.0, 3.0, -2.0);
         break;
     default:
         break;
