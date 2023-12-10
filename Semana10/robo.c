@@ -8,6 +8,8 @@
 float thetaX = 0.0;
 float thetaY = 0.0;
 
+bool reverte = false;
+
 float rotx = 0.0;
 float roty = 0.0;
 
@@ -363,7 +365,7 @@ void desenha()
     glPushMatrix();
 
     glTranslatef(-0.15, 0.3, 0.0);
-    glRotatef(-thetaX, 0.0, 1.0, 0.0);
+    glRotatef(-thetaX, 1.0, 0.0, 0.0);
     glTranslatef(0.15, -0.3, 0.0);
     glPushMatrix();
     pernaesq();
@@ -372,7 +374,7 @@ void desenha()
     glPushMatrix();
 
     glTranslatef(0.15, 0.3, 0.0);
-    glRotatef(thetaX, 0.0, 1.0, 0.0);
+    glRotatef(thetaX, 1.0, 0.0, 0.0);
     glTranslatef(-0.15, -0.3, 0.0);
     glPushMatrix();
     pernadir();
@@ -393,7 +395,9 @@ void tecladoEspecial(int tecla, int x, int y)
         roty-=2;
         break;
     case GLUT_KEY_UP:
-        thetaX += 2;
+        if(thetaX >= 80.0 && !reverte){reverte = true}
+        if(thetaX <= 0.0 && reverte){reverte = false}
+        if(!reverte){thetaX += 2;}else{thetaX -= 2}
         break;
     case GLUT_KEY_DOWN:
         thetaX -= 2;
@@ -410,7 +414,6 @@ void teclado(unsigned char key, int x, int y){
         case '2': rotx-=2; break;
         case '3': roty+=2; break;
         case '4': roty-=2; break;
-        case '5': glBindTexture(GL_TEXTURE_2D, texture_id[0]); break;
     }
     glutPostRedisplay();
 }
