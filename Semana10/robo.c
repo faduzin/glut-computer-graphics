@@ -363,7 +363,7 @@ void desenha()
     glPushMatrix();
 
     glTranslatef(-0.15, 0.3, 0.0);
-    glRotatef(-thetaX, 0.0, 0.0, 1.0);
+    glRotatef(-thetaX, 0.0, 1.0, 0.0);
     glTranslatef(0.15, -0.3, 0.0);
     glPushMatrix();
     pernaesq();
@@ -372,7 +372,7 @@ void desenha()
     glPushMatrix();
 
     glTranslatef(0.15, 0.3, 0.0);
-    glRotatef(thetaX, 0.0, 0.0, 1.0);
+    glRotatef(thetaX, 0.0, 1.0, 0.0);
     glTranslatef(-0.15, -0.3, 0.0);
     glPushMatrix();
     pernadir();
@@ -387,10 +387,10 @@ void tecladoEspecial(int tecla, int x, int y)
     switch (tecla)
     {
     case GLUT_KEY_RIGHT:
-        thetaY += 2;
+        roty+=2;
         break;
     case GLUT_KEY_LEFT:
-        thetaY -= 2;
+        roty-=2;
         break;
     case GLUT_KEY_UP:
         thetaX += 2;
