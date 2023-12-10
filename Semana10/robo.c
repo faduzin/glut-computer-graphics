@@ -140,7 +140,7 @@ int main(int argc, char** argv) {
     glutInitWindowPosition(50,50);
     glutInitWindowSize(600, 600);
     glutCreateWindow("Robo");
-    glutDisplayFunc(desenha);
+    glutDisplayFunc(display);
     init();
     glutMainLoop();
     return 0;
