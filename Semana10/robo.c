@@ -395,9 +395,9 @@ void tecladoEspecial(int tecla, int x, int y)
         roty-=2;
         break;
     case GLUT_KEY_UP:
-        if(thetaX >= 80.0 && !reverte){reverte = true}
-        if(thetaX <= 0.0 && reverte){reverte = false}
-        if(!reverte){thetaX += 2;}else{thetaX -= 2}
+        if(thetaX >= 80.0 && !reverte){reverte = true;}
+        if(thetaX <= 0.0 && reverte){reverte = false;}
+        if(!reverte){thetaX += 2;}else{thetaX -= 2;}
         break;
     case GLUT_KEY_DOWN:
         thetaX -= 2;
