@@ -259,31 +259,31 @@ void torso(){
 }
 
 void bracoesq(){
-    glTranslatef(-0.5, 1.8, 0.0);
-    glRotatef(90, 0.0, 0.0, 1.0);
+    glTranslatef(-0.6, 1.8, 0.0);
+    glRotatef(170, 0.0, 0.0, 1.0);
     glTranslatef(0.0, 0.5, 0.0);
     glScalef(0.6, 1.2, 0.6);
     cubo();
     
     glPopMatrix(); //p rot
 
-    glTranslatef(-1.75, 1.8, 0.0);
-    glRotatef(90-2*thetaX, 0.0, 0.0, 1.0);
+    glTranslatef(-0.83, 0.58, 0.0);
+    glRotatef(170, 0.0, 0.0, 1.0);
     glTranslatef(0.0, 0.5, 0.0);
     glScalef(0.6, 1.2, 0.6);
     cubo();
 }
 void bracodir(){
-    glTranslatef(0.5, 1.8, 0.0);
-    glRotatef(-90, 0.0, 0.0, 1.0);
+    glTranslatef(0.6, 1.8, 0.0);
+    glRotatef(-170, 0.0, 0.0, 1.0);
     glTranslatef(0.0, 0.5, 0.0);
     glScalef(0.6, 1.2, 0.6);
     cubo();
 
     glPopMatrix();  //p rot
 
-    glTranslatef(1.75, 1.8, 0.0);
-    glRotatef(-90+2*thetaX, 0.0, 0.0, 1.0);
+    glTranslatef(0.83, 0.58, 0.0);
+    glRotatef(-170, 0.0, 0.0, 1.0);
     glTranslatef(0.0, 0.5, 0.0);
     glScalef(0.6, 1.2, 0.6);
     cubo();
@@ -345,8 +345,7 @@ void desenha()
     glPushMatrix();  //rot
 
     glTranslatef(-0.3, 1.5, 0.0);
-    glRotatef(thetaY, 0.0, 1.0, 0.0);
-    glRotatef(-thetaX, 0.0, 0.0, 1.0);
+    glRotatef(3*thetaX/2, 1.0, 0.0, 0.0);
     glTranslatef(0.3, -1.5, 0.0);
     glPushMatrix();  //rotaçao braço
     bracoesq();
@@ -355,8 +354,7 @@ void desenha()
     glPushMatrix();  //iden
 
     glTranslatef(0.3, 1.5, 0.0);
-    glRotatef(-thetaY, 0.0, 1.0, 0.0);
-    glRotatef(thetaX, 0.0, 0.0, 1.0);
+    glRotatef(3*-thetaX/2, 1.0, 0.0, 0.0);
     glTranslatef(-0.3, -1.5, 0.0);
     glPushMatrix();
     bracodir();
@@ -395,12 +393,11 @@ void tecladoEspecial(int tecla, int x, int y)
         roty-=2;
         break;
     case GLUT_KEY_UP:
-        if(thetaX >= 80.0 && reverte == 0){reverte = 1;}
-        if(thetaX <= 0.0 && reverte == 1){reverte = 0;}
+        if(thetaX >= 34.0 && reverte == 0){reverte = 1;}
+        if(thetaX <= -34.0 && reverte == 1){reverte = 0;}
         if(reverte == 0){thetaX += 2;}else{thetaX -= 2;}
         break;
     case GLUT_KEY_DOWN:
-        thetaX -= 2;
         break;
     default:
         break;
