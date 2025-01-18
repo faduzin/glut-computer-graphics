@@ -52,8 +52,8 @@ To compile and run the `.c` files, you need to have the OpenGL and GLUT developm
 - To compile and run a file named `example.c` in `week-02`:
   ```bash
   cd week-02
-  gcc -o example example.c -lglut -lGL -lGLU
-  ./example
+  gcc -o ex1 ex1.c -lglut -lGL -lGLU
+  ./ex1
   ```
 
 ## Notes
